@@ -1,11 +1,10 @@
 class CreateRooms < ActiveRecord::Migration
   def change
       create_table :rooms do |t|
-      t.string :dorm_type
       t.string :room_type
       t.integer :accommodate
-      t.integer :bed_room
-      t.integer :bath_room
+      t.integer :bedroom
+      t.integer :bathroom
       t.string :listing_name
       t.text :summary
       t.string :address

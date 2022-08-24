@@ -33,11 +33,11 @@ ActiveRecord::Schema.define(version: 20170705184523) do
 
   create_table "photos", force: :cascade do |t|
     t.integer  "room_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
-    t.integer  "image_file_size"
+    t.integer  "image_file_size",    limit: 8
     t.datetime "image_updated_at"
   end
 
@@ -71,11 +71,10 @@ ActiveRecord::Schema.define(version: 20170705184523) do
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
 
   create_table "rooms", force: :cascade do |t|
-    t.string   "dorm_type"
     t.string   "room_type"
     t.integer  "accommodate"
-    t.integer  "bed_room"
-    t.integer  "bath_room"
+    t.integer  "bedroom"
+    t.integer  "bathroom"
     t.string   "listing_name"
     t.text     "summary"
     t.string   "address"

@@ -1,6 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    Create your Dorm Room
+    Create A Listing
   </div>
   <div class="panel-body">
     <div class="container">
@@ -8,67 +8,60 @@
       <%= form_for @room , html: { multipart: true } do |f| %>
 
         <div class="row">
-          <div class="col-md-4 select">
+          <div class="col-md-3 select">
             <div class="form-group">
-              <label>Dorm Type</label>
-              <%= f.select :dorm_type, [["Men","Men"], ["Women", "Women"], ["Co-Ed", "Co-Ed"], 
-              ["Co-Ed/ Men Floor", "Co-Ed/ Men Floor"], ["Co-Ed/ Ladies Floor", "Co-Ed/ Ladies Floor"]], id:"dorm_type", prompt: "Select...", class: "form-control" %>
+              <label>Accommodation Type</label>
+              <%= f.select :room_type, [["House","House"], ["Apartment", "Apartment"], ["Condo", "Condo"], ["Penthouse", "Penthouse"], 
+              ["Boat", "Boat"], ["RV/Camper", "RV/Camper"], ["Luxury Tree House", "Luxury Tree House"]], prompt: "Select...", class: "form-control" %>
             </div>
           </div>
 
-          <div class="col-md-4 select">
-            <div class="form-group">
-              <label>Dorm Room Layout</label>
-              <%= f.select :room_type, [["Single Occupancy","Single Occupancy"], ["Double Occupancy", "Double Occupancy"], 
-              ["Suite/Penthouse Style", "Suite/Penthouse Style"], ["Double Occupancy (Shared/Roommate)", "Double Occupancy (Shared/Roommate)"], 
-              ["Suite/Penthouse Style (Shared/Roommate)", "Suite/Penthouse Style (Shared/Roommate)"]], prompt: "Select...", class: "form-control" %>
-            </div>
-          </div>
-
-          <div class="col-md-4 select">
+          <div class="col-md-3 select">
             <div class="form-group">
               <label>Accommodate</label>
               <%= f.select :accommodate, [["1",1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6+", 6]], prompt: "Select...", class: "form-control" %>
             </div>
           </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-4 select">
+          
+          <div class="col-md-3 select">
             <div class="form-group">
               <label>Beds</label>
-              <%= f.select :bed_room, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]], promp: "Select...", class: "form-control" %>
+              <%= f.select :bedroom, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]], promp: "Select...", class: "form-control" %>
             </div>
           </div>
 
-          <div class="col-md-4 select">
+          <div class="col-md-3 select">
             <div class="form-group">
               <label>Bathrooms</label>
-              <%= f.select :bath_room, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]], promp: "Select...", class: "form-control" %>
+              <%= f.select :bathroom, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]], promp: "Select...", class: "form-control" %>
             </div>
           </div>
         </div>
 
-        <div class="row">
+        <!--<div class="row">-->
+          
+        <!--</div>-->
+
+        <!--<div class="row">-->
           <div class="form-group">
             <label>Listing name</label>
             <%= f.text_field :listing_name, placeholder: "Be clear and descriptive", class: "form-control" %>
           </div>
-        </div>
+        <!--</div>-->
 
-        <div class="row">
+        <!--<div class="row">-->
           <div class="form-group">
-            <label>Summary</label>
-            <%= f.text_area :summary, rows: 5, placeholder: "Tell about your dorm room", class: "form-control" %>
+            <label>Description</label>
+            <%= f.text_area :summary, rows: 5, placeholder: "Tell about your accommodation", class: "form-control" %>
           </div>
-        </div>
+        <!--</div>-->
 
-        <div class="row">
+        <!--<div class="row">-->
           <div class="form-group">
             <label>Address</label>
-            <%= f.text_field :address, placeholder: "What is your dorm building address?", class: "form-control" %>
+            <%= f.text_field :address, placeholder: "What is the address?", class: "form-control" %>
           </div>
-        </div>
+        <!--</div>-->
 
         <div class="row">
           <div class="col-md-4">
@@ -132,11 +125,11 @@
 
         <div id="photos"><%= render 'photos/list' %></div>
 
-        <div class="row">
+        <!--<div class="row">-->
           <div class="form-group">
             <%= f.check_box :active %> Active
           </div>
-        </div>
+        <!--</div>-->
 
         <div class="actions">
           <%= f.submit "Save", class: "btn btn-primary" %>

@@ -4,7 +4,6 @@
 @import "font-awesome";
 
 body {
-  
   color: #565a5c;
   background-color: #FFF;
   font-family: "Varela Round", "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
@@ -20,9 +19,9 @@ body {
             box-sizing: border-box;
 }
 
-.container {
-	width: 80%;
-}
+// .container {
+// 	width: 80%;
+// }
 
 .container h3 {
   margin-right: -40px;
@@ -66,7 +65,8 @@ body {
 .navbar-default .navbar-brand {
   color: #FF5A5F;
   font-size: 2em;
-  font-weight: 400;
+  font-weight: 700;
+  // font-family: Arial;
 }
 
 .btn-primary.btn {
@@ -378,3 +378,7 @@ div.box-wrapper {
 .container .text-muted {
     margin: 20px 0;
 }
+
+// .carousel-inner {
+// border-radius: 2%; 
+// }
