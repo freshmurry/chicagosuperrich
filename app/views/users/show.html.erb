@@ -1,4 +1,4 @@
-<div class="row">
+<div class="container">
   <div class="col-md-3">
     <div class="center">
       <%= image_tag avatar_url(@user), class: "avatar-full" %>
@@ -21,17 +21,17 @@
       <%= @user.description %>
     </div>
 
-    <h4>Listings (<%= @rooms.length %>)</h4><br>
+    <h4>Listings (<%= @homes.length %>)</h4><br>
 
     <div class="row">
-      <% @rooms.each do |room| %>
+      <% @homes.each do |home| %>
         <div class="col-md-4">
           <div class="panel panel-default">
             <div class="panel-heading preview">
-              <%= image_tag room.photos[0].image.url(:medium) %>
+              <%= image_tag home.photos[0].image.url(:medium) %>
             </div>
             <div class="panel-body">
-              <%= link_to room.listing_name, room_path(room) %>
+              <%= link_to home.listing_name, home_path(home) %>
             </div>
           </div>
         </div>
@@ -40,11 +40,11 @@
 
     <h4>Reviews</h4>
 
-    <% @rooms.each do |room| %>
+    <% @homes.each do |home| %>
 
-      <% if !room.reviews.blank? %>
+      <% if !home.reviews.blank? %>
 
-        <% room.reviews.each do |review| %>
+        <% home.reviews.each do |review| %>
 
           <div class="row">
             <div class="col-md-2 text-center">
@@ -53,7 +53,7 @@
             </div>
 
             <div class="col-md-10">
-              <%= link_to room.listing_name, room %><br>
+              <%= link_to home.listing_name, home %><br>
               <%= review.comment %><br>
               <%= review.created_at.strftime("%v") %>
             </div>

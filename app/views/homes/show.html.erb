@@ -37,25 +37,23 @@
     
     <div class="row">
       <div class="col-md-2 text-center" style="margin-left: -40px;">
-        <%= image_tag avatar_url(@room.user), class: "img-circle avatar-large" %><br>
-        <%= link_to user_path(@room.user) do %>
-        <%= @room.user.fullname %>
+        <%= image_tag avatar_url(@home.user), class: "img-circle avatar-large" %><br>
+        <%= link_to user_path(@home.user) do %>
+        <%= @home.user.fullname %>
         <% end %>
       </div>
 
       <!--<div class="col-md-10">-->
-        <h2><%= @room.listing_name %></h2>
-        <%= @room.address %>
+        <h2><%= @home.listing_name %></h2>
+        <%= @home.address %>
         <hr>
 
       <div class="row text-center">
         <div class="col-xs-3 col-sm-3 col-md-3">
           <i class="fa fa-home fa-2x"></i>
         </div>
-        <div class="col-xs-3 col-sm-3 col-md-3">
-          <i class="fa fa-users fa-2x"></i>
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3">
+
+        <div class="col-xs-4 col-sm-3 col-md-3">
           <i class="fa fa-bed fa-2x"></i>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3">
@@ -64,10 +62,9 @@
       </div>
       
       <div class="row text-center">
-        <div class="col-xs-3 col-sm-3 col-md-3"><%= @room.room_type %></div>
-        <div class="col-xs-3 col-sm-3 col-md-3"><%= @room.accommodate %> <%= @room.accommodate > 1? "Guests" : "Guest" %></div>
-        <div class="col-xs-3 col-sm-3 col-md-3"><%= @room.bedroom %> <%= @room.bedroom > 1? "Beds" : "Beds" %></div>
-        <div class="col-xs-3 col-sm-3 col-md-3"><%= @room.bathroom %> <%= @room.bathroom > 1? "Bathrooms" : "Bathroom" %></div>
+        <div class="col-xs-3 col-sm-3 col-md-3"><%= @home.home_type %></div>
+        <div class="col-xs-3 col-sm-3 col-md-3"><%= @home.bedroom %> <%= @home.bedroom > 1? "Beds" : "Beds" %></div>
+        <div class="col-xs-3 col-sm-3 col-md-3"><%= @home.bathroom %> <%= @home.bathroom > 1? "Bathroom" : "Bathroom" %></div>
       </div>
       <!--</div>-->
     </div>
@@ -75,32 +72,7 @@
     
     <!-- About -->
     <h3 class="text-center">About This Listing</h3>
-      <p><%= @room.summary %></p>
-    <hr>
-    
-    <!-- Amenities -->
-    <h3 class="text-center">Amenities</h3>
-    <div class="col-md-4">
-      <ul class="amenities">
-        <li class="<%= 'text-line-through' if !@room.is_tv %>">TV</li>
-        <li class="<%= 'text-line-through' if !@room.is_kitchen %>">Kitchen</li>
-        <li class="<%= 'text-line-through' if !@room.is_internet %>">Internet</li>
-      </ul>
-    </div>
-    <div class="col-md-4">
-      <ul class="amenities">
-        <li class="<%= 'text-line-through' if !@room.is_heating %>">Heating</li>
-        <li class="<%= 'text-line-through' if !@room.is_air %>">Air Conditioning</li>
-        <li class="<%= 'text-line-through' if !@room.is_fridge %>">Fridge</li>
-      </ul>
-    </div>
-    <div class="col-md-4">
-      <ul class="amenities">
-        <li class="<%= 'text-line-through' if !@room.is_laundry %>">Washer/Dryer</li>
-        <li class="<%= 'text-line-through' if !@room.is_beer %>">Free Beer</li>
-        <li class="<%= 'text-line-through' if !@room.is_wifi %>">Guest Wifi Access</li>
-      </ul>
-    </div>
+      <p><%= @home.summary %></p>
     <hr>
   
     <!-- Reviews -->
@@ -128,14 +100,14 @@
           function initialize() {
             var mapCanvas = document.getElementById('map');
             var mapOptions = {
-              center: new google.maps.LatLng(<%= @room.latitude %>, <%= @room.longitude %>),
+              center: new google.maps.LatLng(<%= @home.latitude %>, <%= @home.longitude %>),
               zoom: 14,
               mapTypeId: google.maps.MapTypeId.ROADMAP
             }
             var map = new google.maps.Map(mapCanvas, mapOptions);
             var marker = new google.maps.Marker({
-              position: new google.maps.LatLng(<%= @room.latitude %>, <%= @room.longitude %>),
-              title: "SingleHost"
+              position: new google.maps.LatLng(<%= @home.latitude %>, <%= @home.longitude %>),
+              title: "Chicago Super Rich"
             });
             marker.setMap(map);
           }
@@ -146,18 +118,18 @@
     </div>
     <hr>
     
-    <!-- Close by Rooms -->
+    <!-- Close by homes -->
     <div class="text-center">
       <h3>More places near by</h3>
-      <% for room in @room.nearbys(10) %>
+      <% for home in @home.nearbys(10) %>
       <div class="col-md-4">
         <div class="panel panel-default">
           <div class="panel-heading preview">
-            <%= image_tag room.photos[0].image.url(:medium) %>
+            <%= image_tag home.photos[0].image.url(:medium) unless home.photos.first.nil? %>
           </div>
           <div class="panel-body">
-            <%= link_to room.listing_name, room %><br>
-            (<%= room.distance.round(2) %> miles away)
+            <%= link_to home.listing_name, home %><br>
+            (<%= home.distance.round(2) %> miles away)
           </div>
         </div>
       </div>
@@ -167,7 +139,14 @@
 
   <div class="col-md-4">
     <!-- Reservation Form -->
-    <%= render 'reservations/form' %>
+    <div class="col-md-12 price_tag">
+      <span>Purchase Price: $<%= @home.price %></span>
+      <span class="pull-right"></span>
+    </div>
+
+    <h4><span id="message"></span></h4>
+    
+    <div id="preview" style="display: none">
   </div>
 </div>
 
@@ -175,6 +154,6 @@
   $('#average_rating').raty({
     path: '/assets',
     readOnly: true,
-    score: <%= @room.average_rating %>
+    score: <%= @home.average_rating %>
   });
 </script>

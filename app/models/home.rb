@@ -1,14 +1,12 @@
-class Room < ActiveRecord::Base
+class Home < ActiveRecord::Base
   belongs_to :user
   has_many :photos
-  has_many :reservations
   has_many :reviews
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
-  validates :room_type, presence: true
-  validates :accommodate, presence: true 
+  validates :home_type, presence: true
   validates :bedroom, presence: true
   validates :bathroom, presence: true
   validates :listing_name, presence: true, length: {maximum: 50}

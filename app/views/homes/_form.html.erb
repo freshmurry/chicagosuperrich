@@ -1,0 +1,103 @@
+<div class="container"> 
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Create A Listing
+    </div>
+    <div class="panel-body">
+      <div class="container-fluid">
+  
+        <%= form_for @home , html: { multipart: true } do |f| %>
+  
+          <div class="row">
+            <div class="form-group">
+              <label>Homeowner's name</label>
+              <%= f.text_field :listing_name, class: "form-control" %>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="form-group">
+              <label>Occupation</label>
+              <%= f.text_field :occupation, class: "form-control" %>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="form-group">
+              <label>Description</label>
+              <%= f.text_area :summary, rows: 5, class: "form-control" %>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="form-group">
+              <label>Address</label>
+              <%= f.text_field :address, placeholder: "Home Address", class: "form-control" %>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-3 select">
+              <div class="form-group">
+                <label>Home Type</label>
+                <%= f.select :home_type, [["House","House"], ["Mansion", "Mansion"], ["Condo", "Condo"], ["Penthouse", "Penthouse"]], prompt: "Select...", class: "form-control" %>
+              </div>
+            </div>
+            
+            <div class="col-md-3 select">
+              <div class="form-group">
+                <label>Beds</label>
+                <%= f.select :bedroom, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]], promp: "Select...", class: "form-control" %>
+              </div>
+            </div>
+  
+            <div class="col-md-3 select">
+              <div class="form-group">
+                <label>Bathrooms</label>
+                <%= f.select :bathroom, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]], promp: "Select...", class: "form-control" %>
+              </div>
+            </div>
+            
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Purchase Price</label>
+                <div class="input-group">
+                  <div class="input-group-addon">$</div>
+                    <%= f.text_field :price, placeholder: "eg. $100,000,000", class: "form-control" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!--<div class="row">-->
+            
+          <!--</div>-->
+  
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <span class="btn btn-default btn-file">
+                  <i class="fa fa-cloud-upload fa-lg"></i> Upload Photos
+                  <%= file_field_tag "images[]", type: :file, multiple: true %>
+                </span>
+              </div>
+            </div>
+          </div>
+  
+          <div id="photos"><%= render 'photos/list' %></div>
+  
+          <!--<div class="row">-->
+            <div class="form-group">
+              <%= f.check_box :active %> Active
+            </div>
+          <!--</div>-->
+  
+          <div class="actions">
+            <%= f.submit "Save", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+  
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,14 +12,10 @@ Rails.application.routes.draw do
                              }
   
   resources :users, only: [:show]
-  resources :rooms
+  resources :homes
   resources :photos
 
-  resources :rooms do
-    resources :reservations, only: [:create]
-  end
-
-  resources :rooms do
+  resources :homes do
     resources :reviews, only: [:create, :destroy]
   end
 

@@ -13,8 +13,8 @@
         function initialize() {
           var mapCanvas = document.getElementById('widget');
           var mapOptions = {
-            <% if @arrRooms.length > 0 %>
-              center: new google.maps.LatLng(<%= @arrRooms[0].latitude %>, <%= @arrRooms[0].longitude %>),
+            <% if @arrHomes.length > 0 %>
+              center: new google.maps.LatLng(<%= @arrHomes[0].latitude %>, <%= @arrHomes[0].longitude %>),
             <% else %>
               center: new google.maps.LatLng(41.85, -87.64999999999998),
             <% end %>
@@ -22,9 +22,9 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP
           }
           var map = new google.maps.Map(mapCanvas, mapOptions);
-          <% @arrRooms.each do |room| %>
+          <% @arrHomes.each do |home| %>
             var marker = new google.maps.Marker({
-              position: new google.maps.LatLng(<%= room.latitude %>, <%= room.longitude %>),
+              position: new google.maps.LatLng(<%= home.latitude %>, <%= home.longitude %>),
               title: "Naptivity"
             });
             marker.setMap(map);
@@ -60,37 +60,20 @@
           
           <div class="row">
             <div class="col-md-4">
-              <%= check_box_tag "q[room_type_eq_any][]", "House" %> House
+              <%= check_box_tag "q[home_type_eq_any][]", "House" %> House
             </div>
             <div class="col-md-4">
-              <%= check_box_tag "q[room_type_eq_any][]", "Apartment" %> Apartment
+              <%= check_box_tag "q[home_type_eq_any][]", "Mansion" %> Mansion
             </div>
             <div class="col-md-4">
-              <%= check_box_tag "q[room_type_eq_any][]", "Condo" %> Condo
+              <%= check_box_tag "q[home_type_eq_any][]", "Condo" %> Condo
             </div>
             <div class="col-md-4">
-              <%= check_box_tag "q[room_type_eq_any][]", "Penthouse" %> Penthouse
-            </div>
-            <div class="col-md-4">
-              <%= check_box_tag "q[room_type_eq_any][]", "Boat" %> Boat
-            </div>
-            <div class="col-md-4">
-              <%= check_box_tag "q[room_type_eq_any][]", "RV/Camper" %> RV/Camper
-            </div>
-            <div class="col-md-4">
-              <%= check_box_tag "q[room_type_eq_any][]", "Luxury Treehouse" %> Luxury Treehouse
+              <%= check_box_tag "q[home_type_eq_any][]", "Penthouse" %> Penthouse
             </div>
           </div>
 
           <hr>
-
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label>Accommodate</label>
-                <%= f.select :accommodate_gteq, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6+", 6]] %>
-              </div>
-            </div>
 
             <div class="col-md-4">
               <div class="form-group">
@@ -101,42 +84,10 @@
 
             <div class="col-md-4">
               <div class="form-group">
-                <label>Bathrooms</label>
+                <label>Bathhomes</label>
                 <%= f.select :bathroom_gteq, [["1", 1], ["2", 2], ["3+", 3]] %>
               </div>
             </div>
-          </div>
-
-          <hr>
-
-          <div class="row">
-            <div class="col-md-4">
-              <%= check_box_tag "q[is_tv_eq", true %> TV
-            </div>
-            <div class="col-md-4">
-                <%= check_box_tag "q[is_kitchen_eq", true %> Kitchenette
-              </div>
-              <div class="col-md-4">
-                <%= check_box_tag "q[is_internet_eq", true %> Internet
-              </div>
-              <div class="col-md-4">
-                <%= check_box_tag "q[is_heating_eq", true %> Heating
-              </div>
-              <div class="col-md-4">
-                <%= check_box_tag "q[is_air_eq", true %> Air Conditioning
-              </div>
-              <div class="col-md-4">
-                <%= check_box_tag "q[is_fridge_eq", true %> Fridge
-              </div>
-              <div class="col-md-4">
-                <%= check_box_tag "q[is_laundry_eq", true %> Washer/Dryer
-              </div>
-              <div class="col-md-4">
-                <%= check_box_tag "q[is_beer_eq", true %> Free Beer
-              </div>
-              <div class="col-md-4">
-                <%= check_box_tag "q[is_wifi_eq", true %> Free Wifi
-              </div>
           </div>
 
           <hr>
@@ -150,15 +101,15 @@
         <hr>
 
         <div class="row">
-          <% @arrRooms.each do |room| %>
+          <% @arrHomes.each do |home| %>
 
             <div class="col-md-6">
               <div class="panel panel-default">
                 <div class="panel-heading preview">
-                  <%= image_tag room.photos[0].image.url(:medium) if room.photos.length > 0 %>
+                  <%= image_tag home.photos[0].image.url(:medium) if home.photos.length > 0 %>
                 </div>
                 <div class="panel-body">
-                  <%= link_to room.listing_name, room %>
+                  <%= link_to home.listing_name, home %>
                 </div>
               </div>
             </div>
@@ -171,28 +122,6 @@
   </div>
 
 </div>
-
-<script>
-  $(function() {
-    $("#start_date").datepicker({
-      dateFormat: 'dd-mm-yy',
-      minDate: 0,
-      maxDate: '3m',
-      onSelect: function(selected) {
-        $('#end_date').datepicker("option", "minDate", selected);
-        $('#end_date').attr('disabled', false);
-      }
-    });
-    $("#end_date").datepicker({
-      dateFormat: 'dd-mm-yy',
-      minDate: 0,
-      maxDate: '3m',
-      onSelect: function(selected) {
-        $('#start_date').datepicker("option", "maxDate", selected);
-      }
-    });
-  })
-</script>
 
 <script>
   $(function(){ // document ready
