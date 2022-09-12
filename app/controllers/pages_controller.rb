@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-  	@homes = Home.limit(3)
+  	@homes = Home.limit(300)
   end
 
   def search

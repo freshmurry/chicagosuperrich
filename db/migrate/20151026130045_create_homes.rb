@@ -8,6 +8,8 @@ class CreateHomes < ActiveRecord::Migration
       t.text :summary
       t.string :occupation
       t.string :address
+      t.float :latitude
+      t.float :longitude
       t.integer :price
       t.boolean :active
       t.references :user, index: true, foreign_key: true

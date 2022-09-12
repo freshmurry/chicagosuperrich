@@ -47,3 +47,4 @@ group :production do
 end
 
 gem 'bigdecimal', '1.3.5'
+gem 'geocoder'

@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20170705184523) do
     t.text     "summary"
     t.string   "occupation"
     t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
     t.integer  "price"
     t.boolean  "active"
     t.integer  "user_id"
