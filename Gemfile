@@ -23,6 +23,7 @@ gem 'omniauth-facebook', '~> 4.0'
 gem 'toastr-rails', '~> 1.0'
 gem 'imagemagick-identify', '~> 0.0.1'
 gem 'puma'
+gem 'geocoder', '~> 1.4'
 
 group :development, :test do
   gem 'sqlite3', '~> 1.3.6'
