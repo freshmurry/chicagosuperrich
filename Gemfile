@@ -1,49 +1,51 @@
+require 'rubygems'
+
 source 'https://rubygems.org'
+ruby '2.6.3'
 
-ruby '2.7.6'
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.6'
-
+gem 'rails', '5.0.2'
+gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
-
-gem 'bootstrap-sass', '~> 3.3.6'
-gem 'sass-rails', '~> 5.0'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'devise', '~> 4.2'
-gem 'toastr-rails'
-gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'paperclip'
-gem 'aws-sdk'
-gem 'geocoder'
-gem 'jquery-ui-rails'
-gem 'private_pub'
-gem 'ransack'
+gem 'aws-sdk', '~> 2.8'
+gem 'paperclip', '~> 5.1.0'
+gem 'will_paginate', '~> 3.0'
+gem 'will_paginate-bootstrap'
+gem 'masonry-rails', '~> 0.2.0'
+gem 'omniauth', '~> 1.6'
+gem 'omniauth-facebook', '~> 4.0'
+gem 'toastr-rails', '~> 1.0'
+gem 'imagemagick-identify', '~> 0.0.1'
 gem 'puma'
-gem 'mimemagic', '~> 0.3.10'
 
-gem 'figaro'
-gem 'font-awesome-rails'
-gem 'railties', '~> 4.2', '>= 4.2.6'
-gem 'stripe'
-gem 'redis'
-
-group :development, :development do
-  gem 'byebug', '>= 4.2.6'
-  gem "capistrano", "~> 3.9"
-  gem 'web-console', '~> 2.0'
-  gem 'spring'
-  gem 'sqlite3', '1.3.13'
+group :development, :test do
+  gem 'sqlite3', '~> 1.3.6'
+  gem 'byebug'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'database_cleaner'
 end
 
 group :production do
-	gem 'pg', '0.20'
+	gem 'pg', '~> 0.20.0'
 	gem 'rails_12factor'
 end
 
-gem 'bigdecimal', '1.3.5'
+# bundle exec rake doc:rails generates the API under doc/api.
+gem 'sdoc', '~> 0.4.0', group: :doc
+
+# Use ActiveModel has_secure_password
+gem 'bcrypt', '~> 3.1.7'
+
+group :development do
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'capistrano-rails'
+end
