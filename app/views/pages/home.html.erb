@@ -20,6 +20,7 @@
     	<div class="panel panel-default">
 				<div class="panel-heading preview">
 					<%= image_tag home.photos[0].image.url(:medium) if home.photos.length > 0 %>
+					<!--<= image_tag room.photos[0].image.url() if home.photos.length > 0 %>-->
 				</div>
 				<div class="panel-body">
 					<div><%= link_to home.listing_name, home %></div>

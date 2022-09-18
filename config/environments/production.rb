@@ -2,7 +2,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Sets paperclip to upload images to Amazon S3
-    config.paperclip_defaults = {
+  config.paperclip_defaults = {
     storage: :s3,
     s3_host_name: "s3-#{ENV['AWS_REGION']}.amazonaws.com",
     s3_credentials: {
