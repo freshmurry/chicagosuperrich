@@ -13,7 +13,6 @@ Rails.application.configure do
   #   }
   # }
   
-  Rails.application.configure do
     config.paperclip_defaults = {
     :storage => :s3,
     s3_host_name: "s3-#{ENV['AWS_REGION']}.amazonaws.com",
