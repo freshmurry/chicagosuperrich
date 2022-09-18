@@ -19,7 +19,7 @@ gem 'toastr-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'paperclip'
-gem 'aws-sdk', '< 2.0'
+gem 'aws-sdk'
 gem 'geocoder'
 gem 'jquery-ui-rails'
 gem 'private_pub'
@@ -47,4 +47,3 @@ group :production do
 end
 
 gem 'bigdecimal', '1.3.5'
-gem 'geocoder'
